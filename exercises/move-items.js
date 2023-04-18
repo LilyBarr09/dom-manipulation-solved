@@ -12,7 +12,8 @@
  */
 
 // Your code goes here...
-const allItems = document.getElementsByClassName("item");
+const allItems = document.querySelectorAll(".item");
+// console.log(allItems);
 
 /**
  * @task
@@ -23,6 +24,7 @@ const allItems = document.getElementsByClassName("item");
 
 // Your code goes here
 const main = document.getElementById("main");
+// console.log(main);
 
 /**
  * @task
@@ -33,6 +35,7 @@ const main = document.getElementById("main");
 
 // Your code goes here
 const favs = document.querySelector("#favs");
+// console.log(favs);
 
 /**
  * @task
@@ -44,7 +47,18 @@ const favs = document.querySelector("#favs");
  */
 
 // Your code goes here
-const updateCollections = (id, direction) => {};
+const updateCollections = (id, direction) => {
+  const card = document.getElementById(id);
+  if (direction === "toFavs") {
+    favs.append(card);
+    card.firstElementChild.classList.remove("fa-heart-circle-plus");
+    card.firstElementChild.classList.add("fa-heart-crack");
+  } else {
+    main.append(card);
+    card.firstElementChild.classList.remove("fa-heart-crack");
+    card.firstElementChild.classList.add("fa-heart-circle-plus");
+  }
+};
 
 /**
  * @task
@@ -61,3 +75,11 @@ const updateCollections = (id, direction) => {};
  */
 
 // Your code goes here...
+allItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    const card = document.getElementById(item.id);
+    const parentId = card.parentElement.id;
+    const direction = parentId === "main" ? "toFavs" : "toMain";
+    updateCollections(item.id, direction);
+  });
+});
