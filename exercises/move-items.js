@@ -2,7 +2,7 @@
  * SORTING NODES WITHIN A CONTAINER
  * Please, make sure to read the following files in the exercises-info folder before you start
  * * 01 SelectNodes.md
-*/
+ */
 
 /**
  * @task
@@ -12,8 +12,7 @@
  */
 
 // Your code goes here...
-
-
+const allItems = document.getElementsByClassName("item");
 
 /**
  * @task
@@ -23,8 +22,7 @@
  * */
 
 // Your code goes here
-
-
+const main = document.getElementById("main");
 
 /**
  * @task
@@ -34,8 +32,7 @@
  */
 
 // Your code goes here
-
-
+const favs = document.querySelector("#favs");
 
 /**
  * @task
@@ -47,8 +44,7 @@
  */
 
 // Your code goes here
-
-
+const updateCollections = (id, direction) => {};
 
 /**
  * @task
@@ -65,5 +61,3 @@
  */
 
 // Your code goes here...
-
-
