@@ -75,7 +75,8 @@ const updateCollections = (id, direction) => {
  */
 
 // Your code goes here...
-allItems.forEach((item) => {
+const newArr = Array.from(allItems);
+newArr.forEach((item) => {
   item.addEventListener("click", () => {
     const card = document.getElementById(item.id);
     const parentId = card.parentElement.id;
