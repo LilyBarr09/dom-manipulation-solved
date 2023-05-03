@@ -21,7 +21,7 @@ const allItems = document.querySelectorAll(".item");
  */
 
 // Your code goes here...
-const nodeList = document.querySelectorAll(".sortBtn");
+const sortBtn = document.querySelectorAll(".sortBtn");
 
 /**
  * @task
@@ -35,14 +35,27 @@ const nodeList = document.querySelectorAll(".sortBtn");
  */
 
 // Your code goes here...
+const container = document.getElementById("main");
+const newArr = Array.from(allItems);
+
+const ascSort = (a, b) => {
+  if (a.innerHTML < b.innerHTML) return -1;
+  else if (a.innerHTML > b.innerHTML) return 1;
+  else return 0;
+};
+
+const descSort = (a, b) => {
+  if (a.innerHTML < b.innerHTML) return 1;
+  else if (a.innerHTML > b.innerHTML) return -1;
+  else return 0;
+};
+
 const sortData = (direction) => {
-  const container = document.getElementById("main");
-  const newArr = Array.from(allItems);
-  newArr.sort((a, b) => {
-    if (a.innerHTML < b.innerHTML) return 1;
-    else if (a.innerHTML > b.innerHTML) return -1;
-    else return 0;
-  });
+  if (direction === "asc") {
+    newArr.sort(ascSort);
+  } else if (direction === "desc") {
+    newArr.sort(descSort);
+  }
   newArr.forEach((item) => {
     container.append(item);
   });
@@ -57,10 +70,9 @@ const sortData = (direction) => {
  */
 
 // Your code goes here...
-const newArr = Array.from(nodeList);
-newArr.forEach((item) => {
-  item.addEventListener("click", () => {
-    const sortBtn = item.dataset.sortdir;
-    sortData(sortBtn);
+sortBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    container.innerHTML = "";
+    sortData(btn.dataset.sortdir);
   });
 });
