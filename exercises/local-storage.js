@@ -38,3 +38,43 @@
  */
 
 // Your code goes here...
+const loadLocalStore = () => {
+  const faves = localStorage.getItem("favorites").split(",");
+  console.log(faves);
+  faves.forEach((num) => {
+    console.log(num);
+    // num.style.backgroundColor = "red";
+    // num.dataset.fav = "true";
+    // localStorage.setItem("favorites", num);
+  });
+};
+loadLocalStore();
+
+const addIdToFav = (id) => {
+  let storageData = localStorage.getItem("favorites");
+  storageData += `, ${id}`;
+  localStorage.setItem("favorites", storageData);
+};
+
+const deleteIdFromFav = (id) => {
+  let storageArray = localStorage.getItem("favorites").split(",");
+  storageArray.splice(storageArray.indexOf(id), 1).join(",");
+  localStorage.setItem("favorites", storageArray);
+};
+
+const callBackFn = (e) => {
+  const square = e.target;
+  if (square.id) {
+    const fave = square.dataset.fav;
+    if (fave === "true") {
+      square.style.backgroundColor = "white";
+      square.dataset.fav = "false";
+      deleteIdFromFav(square.id);
+    } else {
+      square.style.backgroundColor = "red";
+      square.dataset.fav = "true";
+      addIdToFav(square.id);
+    }
+  }
+};
+document.querySelector(".cardsContainer").addEventListener("click", callBackFn);
