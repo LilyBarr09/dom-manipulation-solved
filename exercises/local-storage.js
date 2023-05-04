@@ -56,7 +56,7 @@ loadLocalStorage();
 const addIdToFav = (id) => {
   if (localStorage.getItem("favorites")) {
     let storageData = localStorage.getItem("favorites");
-    storageData += `, ${id}`;
+    storageData += `,${id}`;
     localStorage.setItem("favorites", storageData);
   } else {
     localStorage.setItem("favorites", id);
