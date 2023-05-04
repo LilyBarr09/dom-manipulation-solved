@@ -38,22 +38,29 @@
  */
 
 // Your code goes here...
-const loadLocalStore = () => {
-  const faves = localStorage.getItem("favorites").split(",");
-  console.log(faves);
-  faves.forEach((num) => {
-    console.log(num);
-    // num.style.backgroundColor = "red";
-    // num.dataset.fav = "true";
-    // localStorage.setItem("favorites", num);
-  });
+const loadLocalStorage = () => {
+  if (localStorage.getItem("favorites")) {
+    const faves = localStorage.getItem("favorites").split(",");
+    console.log(faves);
+    faves.forEach((num) => {
+      console.log(num);
+      const clickedOn = document.getElementById(num);
+      console.log(clickedOn);
+      clickedOn.style.backgroundColor = "red";
+      clickedOn.dataset.fav = "true";
+    });
+  }
 };
-loadLocalStore();
+loadLocalStorage();
 
 const addIdToFav = (id) => {
-  let storageData = localStorage.getItem("favorites");
-  storageData += `, ${id}`;
-  localStorage.setItem("favorites", storageData);
+  if (localStorage.getItem("favorites")) {
+    let storageData = localStorage.getItem("favorites");
+    storageData += `, ${id}`;
+    localStorage.setItem("favorites", storageData);
+  } else {
+    localStorage.setItem("favorites", id);
+  }
 };
 
 const deleteIdFromFav = (id) => {
